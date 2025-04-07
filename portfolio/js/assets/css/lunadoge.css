@@ -149,7 +149,7 @@ footer *:last-child { margin-bottom: 0 !important }
 }
 
 /* Global font */
-body { font-family: var(--global-font) }
+body { font-family: 'rye', sans-serif; }
 
 
 /* ================ HERO BLOCK ================ */
@@ -1731,14 +1731,14 @@ a:not(.btn):any-link {
 /* =============== BUTTONS: REAL AND FAUX ============== */
 
 a.btn, button { 
-    font-family: var(--sans-serif);
+    font-family: 'rye', sans-serif;
     font-weight: bold; 
     line-height: 1;
     text-decoration: none;
     cursor: pointer;
     user-select: none;
     white-space: nowrap;
-    font-weight: 700;
+    font-weight: 400;
     transition: all 0.3s linear;
 }
 
@@ -2026,7 +2026,7 @@ a.btn-ghost:active {
 
 footer { 
     text-align: center;
-    background-color: var(--ontrend-800);
+    background-color: #080D10;
 }
 
 /* Footer headings */
@@ -2034,7 +2034,7 @@ footer h2 {
    font-weight: 700;
    font-size: calc(26px + (48 - 26) * ((100vw - 320px)/(1920 - 320)));
    margin: 0 auto 16px auto;
-   color: var(--white-000);
+   color: #B08D57;
 }
 
 footer h3 {
@@ -2071,7 +2071,7 @@ footer ul.footer-links li a:visited {
     text-decoration-thickness: 2px;
     text-underline-offset: 7px;
     text-decoration-color: var(--white-000);
-    color: var(--white-000);
+    color: #B08D57;
     transition: all 0.2s linear;
 }
 
@@ -2187,7 +2187,7 @@ footer p.privacy a:hover, footer p.privacy a:active {
     background-color: transparent;
 }
 
-.container-menu a:first-child img { width: 200px; height: 40px; outline: 0 }
+.container-menu a:first-child img { width: 100%; height: auto; outline: 0 }
 
 .container-menu a:first-child { background-color: transparent }
 
@@ -2209,7 +2209,7 @@ footer p.privacy a:hover, footer p.privacy a:active {
 
 .container-menu ul li a { 
     font-size: calc(18px + (20 - 18) * ((100vw - 320px)/(1920 - 320)));
-    font-family: var(--sans-serif);
+    font-family: 'rye', sans-serif;
     font-weight: 700;
 }
 
