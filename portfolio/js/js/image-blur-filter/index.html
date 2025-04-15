@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Paredes | Front-end Developer | JavaScript Image Blur Filter Project</title>
+    <meta name="description" content="Uses CSS variables and HTML custom data attributes to adjust the filter blur property of an image.">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../assets/css/lunadoge.min.css" />
+    <link rel="stylesheet" href="../assets/css/css-javascript.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============ Header Colours ============= */
+        header.hero-block-js { background-color: #0D1015 }
+        header.hero-block-js h1 { color: #B08D57 }
+        header.hero-block-js h2 { color: #E5DEDC }
+
+        /* Main Colours */
+        main {
+            background: linear-gradient(90deg, rgba(93, 0, 1, 1) 0%, rgba(184, 0, 58, 1) 50%, rgba(201, 2, 22, 1) 100%);
+        }
+        .theme-js .col-2 { background-color: var(--green-100) }
+        .theme-js h3, .theme-js p { color: #222 }
+
+        /* Button Colours: passive state */
+        .theme-js a.btn {
+            color: #fff;
+            background-image: linear-gradient(to right, #e052a0, #f15c41);
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+        .theme-js a.btn:hover { filter: brightness(140%) saturate(140%) }
+
+        :root {
+            --spacing: 10px;
+            --blur: 10px;
+            --base-color: #222;
+        }
+
+        .theme-js {
+            text-align: center;
+            font-size: 50px;
+        }
+
+        .controls { margin-bottom: 50px }
+
+        input { width: 100px; }
+
+        label {
+            color: var(--base-color);
+            font-size: calc(20px + (40 - 20) * (100vw - 320px) / (1920 - 320));
+        }
+
+        .theme-js img {
+            padding: var(--spacing);
+            background: var(--base-color);
+            filter: blur(var(--blur));
+        }
+    </style>
+
+    <!-- Font Awesome 6.1 icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- Navigation Menu -->
+    <nav class="container-menu menu-desktop menu-sticky">
+        <a href="../../../index.html"><img src="../../../assets/img/ttrace_logo_clean_250x60.png" alt="website logo"></a>
+        <ul>
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+            <li><a href="../../../contact/index.html" id="btn-cta"><span>Contact</span><i class="fas fa-arrow-right"></i></a></li>
+        </ul>
+        <div class="item-icon">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+    </nav>
+
+    <!-- Header Hero Block -->
+    <header class="hero-block hero-block-js">
+        <div class="hero-text-container">
+            <h1>Image Blur Filter <span>JavaScript Project</span></h1>
+            <h2>Uses CSS variables and HTML custom data attributes to adjust the filter blur property of an image. View my complete collection of <a href="../index.html">JavaScript projects</a>.</h2>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="container-flex theme-js" id="conta">
+            <div class="controls">
+                <label for="spacing">Spacing:</label>
+                <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+                <label for="blur">Blur:</label>
+                <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+                <label for="base-color">Base Color</label>
+                <input id="base-color" type="color" name="base-color" value="#ffc600">
+            </div>
+
+            <img src="assets/img/photo-1465188162913-8fb5709d6d57.jpg" alt="A beautiful landscape">
+        </section>
+    </main>
+
+    <script>
+        // Select all input elements inside the controls container
+        const inputs = document.querySelectorAll('.controls input');
+
+        // Function to handle updates to CSS variables
+        const handleUpdate = (event) => {
+            const suffix = event.target.dataset.sizing || ''; // Get the suffix (e.g., 'px') from data-sizing
+            document.documentElement.style.setProperty(`--${event.target.name}`, event.target.value + suffix); // Update CSS variable
+        };
+
+        // Attach event listeners for 'change' and 'input' events
+        inputs.forEach(input => {
+            input.addEventListener('input', handleUpdate);
+            input.addEventListener('change', handleUpdate);
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer>
+        <h2>Thomas Paredes</h2>
+        <h3>Excellence in digital creation</h3>
+        <ul class="footer-links">
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+            <li><a href="../../../contact/index.html">Contact</a></li>
+        </ul>
+        <ul class="footer-icons">
+            <li><a href="https://www.linkedin.com/in/thomas-paredes08" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://github.com/Thommy21" target="_blank"><i class="fab fa-github-square"></i></a></li>
+        </ul>
+        <p><a href="../../../privacy.html" style="color: #fff; background-color:transparent;">Privacy &amp; Legal</a></p>
+    </footer>
+
+    <script src="../assets/js/menu.js"></script>
+</body>
+</html>

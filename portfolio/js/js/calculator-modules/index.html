@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Paredes | Front-end Developer | JavaScript Calculator with Modules</title>
+    <meta name="description" content="A basic calculator that uses export/import statements to share code with a JavaScript module file.">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../assets/css/lunadoge.min.css">
+    <link rel="stylesheet" href="../assets/css/javascript-projects.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+
+    <style>
+        /* Header Colors */
+        header.hero-block-js {
+            background-color: #0D1015;
+        }
+        header.hero-block-js h1 {
+            color: #B08D57;
+        }
+        header.hero-block-js h2 {
+            color: #E5DEDC;
+        }
+
+        /* Main Colors */
+        main {
+            background: linear-gradient(90deg, rgba(93, 0, 1, 1) 0%, rgba(184, 0, 58, 1) 50%, rgba(201, 2, 22, 1) 100%);
+        }
+
+        .container-flex {
+            position: relative;
+        }
+
+        /* Calculator Styles */
+        .calculator {
+            display: block;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        .calculator-screen {
+            width: 100%;
+            font-size: 4.25rem;
+            height: 80px;
+            border: none;
+            background-color: #252525;
+            color: #fff;
+            text-align: right;
+            padding: 0 20px;
+        }
+
+        button {
+            height: 60px;
+            border-radius: 3px;
+            border: 1px solid #c4c4c4;
+            font-size: 2rem;
+            color: #333;
+            background: linear-gradient(to bottom, transparent, transparent 50%, rgba(0, 0, 0, 0.04));
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.45), inset 0 -1px 0 0 rgba(255, 255, 255, 0.15), 0 1px 0 0 rgba(255, 255, 255, 0.15);
+            text-shadow: 0 1px rgba(255, 255, 255, 0.4);
+            background-color: transparent;
+        }
+
+        button:hover {
+            background-color: #eaeaea;
+        }
+
+        .operator {
+            color: #337cac;
+        }
+
+        .all-clear {
+            background-color: #f0595f;
+            border-color: #b0353a;
+            color: #fff;
+        }
+
+        .all-clear:hover {
+            background-color: #f17377;
+        }
+
+        .equal-sign {
+            background-color: #2e86c0;
+            border-color: #337cac;
+            color: #fff;
+            height: 100%;
+            grid-area: 2 / 4 / 6 / 5;
+        }
+
+        .equal-sign:hover {
+            background-color: #4e9ed4;
+        }
+
+        .calculator-keys {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 20px;
+            padding: 20px;
+        }
+    </style>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+
+<body>
+    <!-- Navigation Menu -->
+    <nav class="container-menu menu-desktop menu-sticky">
+        <a href="../../../index.html"><img src="../../../assets/img/ttrace_logo_clean_250x60.png" alt="website logo"></a>
+        <ul>
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+            <li><a href="../../../contact/index.html" id="btn-cta"><span>Contact</span><i class="fas fa-arrow-right"></i></a></li>
+        </ul>
+        <div class="item-icon">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+    </nav>
+
+    <!-- Header Hero Block -->
+    <header class="hero-block hero-block-js">
+        <div class="hero-text-container">
+            <h1>Calculator with Modules <span>JavaScript Project</span></h1>
+            <h2>A basic calculator that uses export/import statements to share code with a JavaScript module file. View my complete collection of <a href="../index.html">JavaScript projects</a>.</h2>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="container-flex theme-js">
+            <div class="calculator">
+                <input type="text" class="calculator-screen" value="" disabled>
+
+                <div class="calculator-keys">
+                    <!-- Operator Buttons -->
+                    <button type="button" class="operator" value="+">+</button>
+                    <button type="button" class="operator" value="-">-</button>
+                    <button type="button" class="operator" value="*">&times;</button>
+                    <button type="button" class="operator" value="/">&divide;</button>
+
+                    <!-- Number Buttons -->
+                    <button type="button" value="7">7</button>
+                    <button type="button" value="8">8</button>
+                    <button type="button" value="9">9</button>
+                    <button type="button" value="4">4</button>
+                    <button type="button" value="5">5</button>
+                    <button type="button" value="6">6</button>
+                    <button type="button" value="1">1</button>
+                    <button type="button" value="2">2</button>
+                    <button type="button" value="3">3</button>
+                    <button type="button" value="0">0</button>
+
+                    <!-- Special Buttons -->
+                    <button type="button" class="decimal" value=".">.</button>
+                    <button type="button" class="all-clear" value="all-clear">AC</button>
+                    <button type="button" class="equal-sign operator" value="=">=</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <h2>Thomas Paredes</h2>
+        <h3>Excellence in digital creation</h3>
+        <ul class="footer-links">
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+            <li><a href="../../../contact/index.html">Contact</a></li>
+        </ul>
+        <ul class="footer-icons">
+            <li><a href="https://www.linkedin.com/in/thomas-paredes08" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://github.com/Thommy21" target="_blank"><i class="fab fa-github-square"></i></a></li>
+        </ul>
+        <p><a href="../../../privacy.html" style="color: #fff; background-color: transparent;">Privacy &amp; Legal</a></p>
+    </footer>
+
+    <!-- JavaScript Modules -->
+    <script src="../assets/js/menu.js" defer></script>
+    <script type="module" src="app.js" defer></script>
+    <script type="module" src="perform-calculations.js" defer></script>
+</body>
+</html>

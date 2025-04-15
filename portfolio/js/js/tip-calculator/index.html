@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Paredes | Front-end Developer | Tip Calculator Project</title>
+    <meta name="description" content="Calculates the tip for a restaurant bill based on the level of service and the number of customers.">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../assets/css/lunadoge.min.css" />
+    <link rel="stylesheet" href="../assets/css/css-javascript.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6.1 icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* Custom styles for the page */
+        header.hero-block-js { background-color: #0D1015 }
+        header.hero-block-js h1 { color: #B08D57 }
+        header.hero-block-js h2 { color: #E5DEDC }
+
+        main {
+            background: linear-gradient(90deg, rgba(93, 0, 1, 1) 0%, rgba(184, 0, 58, 1) 50%, rgba(201, 2, 22, 1) 100%);
+        }
+
+        .theme-js .col-2 { background-color: var(--green-100) }
+        .theme-js h3, .theme-js p { color: #E5DEDC }
+
+        .theme-js a.btn {
+            color: #fff;
+            background-image: linear-gradient(to right, #e052a0, #f15c41);
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        .theme-js a.btn:hover { filter: brightness(140%) saturate(140%) }
+
+        .bg-gray {
+            padding: 20px;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2));
+        }
+
+        .bg-lightblue {
+            background-color: #5D0001;
+            padding: 20px;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .bg-lightblue p { font-size: 22px }
+
+        form { font-size: 18px }
+        form p { margin-bottom: 12px }
+        input, select { font-size: 18px; padding: 4px; margin-bottom: 18px }
+        select { font-size: 16px }
+
+        .btn {
+            display: block;
+            padding: 18px 24px;
+            background-color: #B08D57;
+            color: #0D1015;
+            font-size: 20px;
+            line-height: 1;
+            margin-top: 32px;
+            border-radius: 50px;
+            transition: all 350ms ease;
+        }
+
+        .btn:hover { background-color: #E5DEDC }
+        .btn i { margin-right: 16px }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation menu -->
+    <nav class="container-menu menu-desktop menu-sticky">
+        <a href="../../../index.html"><img src="../../../assets/img/ttrace_logo_clean_250x60.png" alt="website logo"></a>
+        <ul>
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+            <li><a href="../../../contact/index.html" id="btn-cta"><span>Contact</span><i class="fas fa-arrow-right"></i></a></li>
+        </ul>
+        <div class="item-icon">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+    </nav>
+
+    <!-- Header hero block -->
+    <header class="hero-block hero-block-js">
+        <div class="hero-text-container">
+            <h1>Tip Calculator <span>JavaScript Project</span></h1>
+            <h2>Calculates the tip for a restaurant bill based on the level of service and the number of customers. View my complete collection of <a href="../index.html">JavaScript projects</a>.</h2>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main>
+        <section class="container-flex theme-js" id="conta">
+            <div class="bg-gray">
+                <form>
+                    <p>How much was your bill?</p>
+                    <p><input id="billAmount" type="number" placeholder="Bill Amount" min="0" step="0.01"></p>
+
+                    <p>How was your service?</p>
+                    <select id="serviceQuality">
+                        <option disabled selected value="0">-- Choose an Option --</option>
+                        <option value="0.3">30% - Outstanding</option>
+                        <option value="0.2">20% - Good</option>
+                        <option value="0.15">15% - It was OK</option>
+                        <option value="0.1">10% - Bad</option>
+                        <option value="0.05">5% - Terrible</option>
+                    </select>
+
+                    <p>How many people are sharing the bill?</p>
+                    <input id="numOfPeople" type="number" placeholder="Number of People" min="1" value="1">
+                </form>
+
+                <button type="button" class="btn" id="calculate"><i class="fa-solid fa-calculator"></i>Calculate Tip</button>
+            </div>
+
+            <!-- Tip display -->
+            <div id="tipDisplayBox" class="bg-lightblue" style="display: none;">
+                <p>Total tip: €<span id="tipTotal"></span></p>
+                <p>Tip each: <b>€<span id="tipEach"></span></b></p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Select DOM elements
+        const tipDisplayBox = document.getElementById("tipDisplayBox");
+        const billAmountInput = document.getElementById("billAmount");
+        const serviceQualityInput = document.getElementById("serviceQuality");
+        const numOfPeopleInput = document.getElementById("numOfPeople");
+        const calculateButton = document.getElementById("calculate");
+        const tipTotalSpan = document.getElementById("tipTotal");
+        const tipEachSpan = document.getElementById("tipEach");
+
+        // Function to calculate the tip
+        const calculateTip = () => {
+            const billAmount = parseFloat(billAmountInput.value);
+            const serviceQuality = parseFloat(serviceQualityInput.value);
+            let numOfPeople = parseInt(numOfPeopleInput.value, 10);
+
+            // Validate input
+            if (isNaN(billAmount) || isNaN(serviceQuality) || billAmount <= 0) {
+                alert("Please enter valid values for bill amount and service quality.");
+                return;
+            }
+
+            if (isNaN(numOfPeople) || numOfPeople <= 0) {
+                numOfPeople = 1;
+                numOfPeopleInput.value = 1;
+            }
+
+            // Calculate tip
+            const tipTotal = (billAmount * serviceQuality).toFixed(2);
+            const tipEach = (tipTotal / numOfPeople).toFixed(2);
+
+            // Display the tip
+            tipDisplayBox.style.display = "block";
+            tipTotalSpan.textContent = tipTotal;
+            tipEachSpan.textContent = tipEach;
+        };
+
+        // Attach event listener to the calculate button
+        calculateButton.addEventListener("click", calculateTip);
+    </script>
+
+    <!-- Footer -->
+    <footer>
+        <h2>Thomas Paredes</h2>
+        <h3>Excellence in digital creation</h3>
+        <ul class="footer-links">
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+            <li><a href="../../../contact/index.html">Contact</a></li>
+        </ul>
+        <ul class="footer-icons">
+            <li><a href="https://www.linkedin.com/in/thomas-paredes08" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://github.com/Thommy21" target="_blank"><i class="fab fa-github-square"></i></a></li>
+        </ul>
+        <p><a href="../../../privacy.html" style="color: #fff; background-color:transparent;">Privacy &amp; Legal</a></p>
+    </footer>
+
+    <script src="../assets/js/menu.js"></script>
+</body>
+</html>

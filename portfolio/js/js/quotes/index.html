@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Paredes | Front-end Developer | JavaScript Random Quotes Generator Project</title>
+    <meta name="description" content="Uses the Fetch API to retrieve a randomly-choosen selection of ten inspiring quotations.">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../assets/css/lunadoge.min.css" />
+    <link rel="stylesheet" href="../assets/css/css-javascript.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom CSS for the page */
+        header.hero-block-js { background-color: #0D1015 }
+        header.hero-block-js h1 { color: #B08D57 }
+        header.hero-block-js h2 { color: #E5DEDC }
+
+        main {
+            background: linear-gradient(90deg, rgba(93, 0, 1, 1) 0%, rgba(184, 0, 58, 1) 50%, rgba(201, 2, 22, 1) 100%);
+        }
+
+        .theme-js .col-2 { background-color: var(--green-100) }
+        .theme-js h3, .theme-js p { color: #222 }
+
+        .theme-js a.btn {
+            color: #B08D57; background-color: #0D1015; transition: 0.2s;
+            border-radius: 6px;
+        }
+
+        .theme-js a.btn:hover { filter: brightness(140%) saturate(140%) }
+
+        .btn-solid {
+            margin-top: 20px;
+            padding: 14px 20px;
+            display: inline-block;
+            font-size: 20px;
+            border-radius: 5px;
+        }
+
+        .btn-solid:hover {
+            background-color: #B08D57;
+            border-color: darkgoldenrod;
+            color: black;
+        }
+
+        .col-3 {
+            border: 1px solid #888;
+            border-radius: 15px;
+            background-color: #FFFAF0;
+            box-shadow: 10px 10px 8px #888888;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .col-3 h3 { font-weight: 600; font-size: 19px }
+        .col-3 p { font-style: italic; font-family: 'Merriweather', serif; }
+        .col-3 p span { color: red }
+    </style>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- Navigation Menu -->
+    <nav class="container-menu menu-desktop menu-sticky">
+        <a href="../../../index.html"><img src="../../../assets/img/ttrace_logo_clean_250x60.png" alt="website logo"></a>
+        <ul>
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+            <li><a href="../../../contact/index.html" id="btn-cta"><span>Contact</span><i class="fas fa-arrow-right"></i></a></li>
+        </ul>
+        <div class="item-icon">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+    </nav>
+
+    <!-- Header Hero Block -->
+    <header class="hero-block hero-block-js">
+        <div class="hero-text-container">
+            <h1>Random Quotes Generator <span>JavaScript Project</span></h1>
+            <h2>Uses the Fetch API to retrieve a randomly-choosen selection of ten inspiring quotations. View my complete collection of <a href="../index.html">JavaScript projects</a>.</h2>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="container-flex theme-js">
+            <div class="col-1 text-center">
+                <h2>Inspiring Quotations</h2>
+                <h3>Click the button below to be inspired by nine uplifting quotations from wise men and women through the ages.</h3>
+                <button class="btn btn-solid" id="btn-quotes"><i class="fa-regular fa-comment"></i> View Quotes</button>
+            </div>
+        </section>
+
+        <section class="container-flex text-center" id="quotes-box"></section>
+    </main>
+
+    <!-- JavaScript -->
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+    const button = document.getElementById("btn-quotes");
+    const quotesBox = document.getElementById("quotes-box");
+
+    button.addEventListener("click", async () => {
+        try {
+            const randomPage = Math.floor(Math.random() * 50) + 1; // Assumes there are at least 50 pages
+
+            const response = await fetch(`http://api.quotable.io/quotes?page=${randomPage}&limit=9`);
+            const data = await response.json();
+            const selectedQuotes = data.results;
+
+            const htmlBlock = selectedQuotes.map(quote => `
+                <div class="col-3">
+                    <p><span>“</span>${quote.content}<span>”</span></p>
+                    <h3>${quote.author || "Anonymous"}</h3>
+                </div>
+            `).join("");
+
+            quotesBox.innerHTML = htmlBlock;
+        } catch (error) {
+            console.error("Error fetching quotes:", error);
+        }
+    });
+});
+
+    </script>
+    
+
+    <!-- Footer -->
+    <footer>
+        <h2>Thomas Paredes</h2>
+        <h3>Excellence in digital creation</h3>
+        <ul class="footer-links">
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+            <li><a href="../../../contact/index.html">Contact</a></li>
+        </ul>
+        <ul class="footer-icons">
+            <li><a href="https://www.linkedin.com/in/thomas-paredes08" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://github.com/Thommy21" target="_blank"><i class="fab fa-github-square"></i></a></li>
+        </ul>
+        <p><a href="../../../privacy.html" style="color: #fff; background-color:transparent;">Privacy &amp; Legal</a></p>
+    </footer>
+
+    <script src="../assets/js/menu.js"></script>
+</body>
+</html>

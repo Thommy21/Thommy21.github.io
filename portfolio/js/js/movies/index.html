@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Paredes | Front-end Developer | JavaScript Movies Listing Project</title>
+    <meta name="description" content="Uses the Fetch API to retrieve a searchable list of movie titles and images from the Internet Movie Database.">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../assets/css/lunadoge.min.css" />
+    <link rel="stylesheet" href="../assets/css/css-javascript.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6.1 icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* Custom CSS styles */
+        /* Header Colors */
+        header.hero-block-js { background-color: #0D1015; }
+        header.hero-block-js h1 { color: #B08D57; }
+        header.hero-block-js h2 { color: #E5DEDC; }
+
+        /* Main Colors */
+        main {
+            background: linear-gradient(90deg, rgba(93, 0, 1, 1) 0%, rgba(184, 0, 58, 1) 50%, rgba(201, 2, 22, 1) 100%);
+        }
+
+        /* Button Styles */
+        .theme-js a.btn {
+            color: #fff;
+            background-image: linear-gradient(to right, #e052a0, #f15c41);
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+        .theme-js a.btn:hover { filter: brightness(140%) saturate(140%); }
+
+        /* Search Bar */
+        #search-bar {
+            width: 100%;
+            background: rgb(38, 39, 38);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #ccc;
+            text-align: center;
+            padding: 20px 0;
+        }
+        #search-bar h1 { margin: 0 20px; color: #fff; }
+        #search-bar form { display: flex; align-items: center; }
+        #search {
+            width: 230px;
+            border: 1px solid black;
+            outline: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        /* Responsive Design */
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        main > div {
+            margin: 19px 15px;
+            background: #080D10;
+        }
+        main img {
+            width: 100%;
+            height: 89%;
+            object-fit: cover;
+        }
+        main h2 {
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            color: #B08D57;
+            padding: 12px;
+        }
+        main {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+main .movie {
+	width: 23%;
+	min-width: 200px;
+	background-color: #080D10;
+	margin: 19px 15px;
+}
+
+main .movie img {
+	width: 100%;
+	height: 89%;
+	object-fit: cover;
+}
+
+main .movie h2 {
+	font-size: 18px;
+	font-weight: 600;
+	text-align: center;
+	color: #B08D57;
+	padding: 12px;
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Menu -->
+    <nav class="container-menu menu-desktop menu-sticky">
+        <a href="../../../index.html"><img src="../../../assets/img/ttrace_logo_clean_250x60.png" alt="website logo"></a>
+        <ul>
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+            <li><a href="../../../contact/index.html" id="btn-cta"><span>Contact</span><i class="fas fa-arrow-right"></i></a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Hero Block -->
+    <header class="hero-block hero-block-js">
+        <div class="hero-text-container">
+            <h1>Movies Listing <span>JavaScript Project</span></h1>
+            <h2>Uses the Fetch API to retrieve a searchable list of movie titles and images from the Internet Movie Database. View my complete collection of <a href="../index.html">JavaScript projects</a>.</h2>
+        </div>
+    </header>
+
+    <!-- Search Bar -->
+    <div id="search-bar">
+        <a href="../../../index.html"><h1>Movies</h1></a>
+        <form id="form">
+            <input type="text" id="search" placeholder="Search" class="search" />
+        </form>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main"></main>
+
+    <script>
+  const apiUrl = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1';
+const IMGPATH = "https://image.tmdb.org/t/p/w1280";
+const SEARCHAPI = "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=";
+
+const main = document.getElementById("main");
+const form = document.getElementById("form");
+const search = document.getElementById("search");
+
+// Fetch and display initial popular movies
+showMovies(apiUrl);
+
+// Fetch and render movies
+async function showMovies(url) {
+	try {
+		const res = await fetch(url);
+		const data = await res.json();
+
+		main.innerHTML = '';
+
+		data.results.forEach(movie => {
+			const movieEl = document.createElement('div');
+			movieEl.classList.add('movie'); // Add class for styling
+
+			const image = document.createElement('img');
+			const title = document.createElement('h2');
+
+			image.src = IMGPATH + movie.poster_path;
+			image.alt = movie.title;
+			title.textContent = truncateString(movie.title, 20);
+
+			movieEl.appendChild(image);
+			movieEl.appendChild(title);
+			main.appendChild(movieEl);
+		});
+	} catch (err) {
+		console.error("Error fetching movies:", err);
+	}
+}
+
+
+// Truncate long titles
+const truncateString = (str, num) =>
+	str.length > num ? str.slice(0, num) + '...' : str;
+
+// Handle search form submit
+form.addEventListener("submit", (e) => {
+	e.preventDefault();
+	const searchTerm = search.value.trim();
+	if (searchTerm) {
+		showMovies(SEARCHAPI + searchTerm);
+		search.value = "";
+	}
+});
+    </script>
+
+    <!-- Footer -->
+    <footer>
+        <h2>Thomas Paredes</h2>
+        <h3>Excellence in digital creation</h3>
+        <ul class="footer-links">
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+            <li><a href="../../../contact/index.html">Contact</a></li>
+        </ul>
+        <ul class="footer-icons">
+            <li><a href="https://www.linkedin.com/in/thomas-paredes08" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://github.com/Thommy21" target="_blank"><i class="fab fa-github-square"></i></a></li>
+        </ul>
+        <p><a href="../../../privacy.html" style="color: #fff; background-color:transparent;">Privacy &amp; Legal</a></p>
+    </footer>
+
+    <script src="../assets/js/menu.js"></script>
+</body>
+</html>

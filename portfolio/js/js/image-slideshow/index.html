@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Paredes | Front-end Developer | JavaScript Image Slider Project</title>
+    <meta name="description" content="A sample collection of my recent JavaScript projects.">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../assets/css/lunadoge.min.css" />
+    <link rel="stylesheet" href="../assets/css/css-javascript.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom CSS for the page */
+        header.hero-block-js { background-color: #0D1015 }
+        header.hero-block-js h1 { color: #B08D57 }
+        header.hero-block-js h2 { color: #E5DEDC }
+
+        main {
+            background: linear-gradient(90deg, rgba(93, 0, 1, 1) 0%, rgba(184, 0, 58, 1) 50%, rgba(201, 2, 22, 1) 100%);
+        }
+   .container-slider {
+    width: 100%; /* Add this line */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.container-outer {
+    border: 10px solid blue;
+    border-radius: 20px;
+    padding: 12px;
+    background-color: #fff;
+}
+
+.container-img {
+    width: 100%;
+    height: 400px;
+    display: block;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: hotpink;
+    border: none;
+    padding: 12px 18px;
+    font-size: 18px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.btn-left {
+    left: 10px;
+}
+
+.btn-right {
+    right: 10px;
+}
+.container-outer {
+    width: 90%;
+    max-width: 1000px;
+}
+    </style>
+
+    <!-- Font Awesome 6.1 icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- Navigation Menu -->
+    <nav class="container-menu menu-desktop menu-sticky">
+        <a href="../../../index.html"><img src="../../../assets/img/ttrace_logo_clean_250x60.png" alt="website logo"></a>
+        <ul>
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+            <li><a href="../../../contact/index.html" id="btn-cta"><span>Contact</span><i class="fas fa-arrow-right"></i></a></li>
+        </ul>
+        <div class="item-icon">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+    </nav>
+
+    <!-- Header Hero Block -->
+    <header class="hero-block hero-block-js">
+        <div class="hero-text-container">
+            <h1>Image Slideshow <span>JavaScript Project</span></h1>
+            <h2>A slideshow based on an array of images of Dublin city, Ireland. View my complete collection of <a href="../index.html">JavaScript projects</a>.</h2>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="container-flex theme-js">
+            <div class="container-slider">
+                <div class="container-outer">
+                    <div class="container-img">
+                        <button class="btn btn-left"><i class="fas fa-caret-left"></i></button>
+                        <button class="btn btn-right"><i class="fas fa-caret-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Immediately Invoked Function Expression (IIFE) to avoid polluting the global scope
+        (() => {
+            // Array containing the base names of slideshow images (without file extension)
+            const pictures = [
+                "dublin-0",
+                "dublin-1",
+                "dublin-2",
+                "dublin-3",
+                "dublin-4",
+                "dublin-5"
+            ];
+    
+            // Select all navigation buttons and the image container element
+            const buttons = document.querySelectorAll('.btn');
+            const imageDIV = document.querySelector('.container-img');
+    
+            // Start at the first image
+            let counter = 0;
+    
+            // Display the first image as soon as the page loads
+            imageDIV.style.backgroundImage = `url('assets/img/${pictures[counter]}.jpg')`;
+    
+            // Loop through all navigation buttons and attach click event listeners
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // If the left button is clicked, move backward in the array
+                    if (button.classList.contains('btn-left')) {
+                        counter = (counter - 1 + pictures.length) % pictures.length;
+                    }
+    
+                    // If the right button is clicked, move forward in the array
+                    if (button.classList.contains('btn-right')) {
+                        counter = (counter + 1) % pictures.length;
+                    }
+    
+                    // Update the background image of the container with the new image
+                    imageDIV.style.backgroundImage = `url('assets/img/${pictures[counter]}.jpg')`;
+    
+                    // Log the current image path to the console for debugging
+                    console.log(`Current image: assets/img/${pictures[counter]}.jpg`);
+                });
+            });
+        })();
+    </script>
+
+    <!-- Footer -->
+    <footer>
+        <h2>Thomas Paredes</h2>
+        <h3>Excellence in digital creation</h3>
+        <ul class="footer-links">
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+            <li><a href="../../../contact/index.html">Contact</a></li>
+        </ul>
+        <ul class="footer-icons">
+            <li><a href="https://www.linkedin.com/in/thomas-paredes08" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://github.com/Thommy21" target="_blank"><i class="fab fa-github-square"></i></a></li>
+        </ul>
+        <p><a href="../../../privacy.html" style="color: #fff; background-color:transparent;">Privacy &amp; Legal</a></p>
+    </footer>
+
+    <script src="../assets/js/menu.js"></script>
+</body>
+</html>

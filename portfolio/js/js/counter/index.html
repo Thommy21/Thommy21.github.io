@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Paredes | Front-end Developer | JavaScript Counter Project</title>
+    <meta name="description" content="An increment and decrement counter that changes the colour of the number displayed on the web page.">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../assets/css/lunadoge.min.css" />
+    <link rel="stylesheet" href="../assets/css/css-javascript.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============ Header Colours =============*/
+        header.hero-block-js { background-color: #0D1015 }
+        header.hero-block-js h1 { color: #B08D57 }
+        header.hero-block-js h2 { color: #E5DEDC }
+
+        /* Main Colours */
+        main {
+            background: linear-gradient(90deg, rgba(93, 0, 1, 1) 0%, rgba(184, 0, 58, 1) 50%, rgba(201, 2, 22, 1) 100%);
+        }
+
+        .theme-js .col-2 { background-color: #B08D57; }
+        .theme-js h3, .theme-js p { color: #222 }
+
+        /* Button Styles */
+        .theme-js a.btn {
+            color: #fff;
+            background-image: linear-gradient(to right, #e052a0, #f15c41);
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        .theme-js a.btn:hover {
+            filter: brightness(140%) saturate(140%);
+        }
+
+        .theme-js .btn-container { display: block; width: 100% }
+        .theme-js { display: flex; align-items: center; flex-direction: column; text-align: center }
+        .theme-js h2 { font-size: 28px; margin: 0 auto }
+        .theme-js #value {
+            font-size: 84px;
+            font-weight: 600;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .theme-js .btn {
+            letter-spacing: 2px;
+            display: inline-block;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+            background: transparent;
+            padding: 12px 22px;
+            margin: 20px;
+            border: solid 2px #000;
+            border-radius: 6px;
+        }
+
+        .theme-js .btn:hover {
+            background-color: #fff;
+        }
+    </style>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- Navigation Menu -->
+    <nav class="container-menu menu-desktop menu-sticky">
+        <a href="../../../index.html"><img src="../../../assets/img/ttrace_logo_clean_250x60.png" alt="website logo"></a>
+        <ul>
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+            <li><a href="../../../contact/index.html" id="btn-cta"><span>Contact</span><i class="fas fa-arrow-right"></i></a></li>
+        </ul>
+        <div class="item-icon">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+    </nav>
+
+    <!-- Header Hero Block -->
+    <header class="hero-block hero-block-js">
+        <div class="hero-text-container">
+            <h1>Counter <span>JavaScript Project</span></h1>
+            <h2>An increment and decrement counter that changes the colour of the number displayed on the web page. View my complete collection of <a href="../index.html">JavaScript projects</a>.</h2>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="container-flex theme-js">
+            <h2>Counter</h2>
+            <span id="value">0</span>
+            <div class="button-container">
+                <button class="btn decrease">Decrease</button>
+                <button class="btn reset">Reset</button>
+                <button class="btn increase">Increase</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Initialize count to zero
+        let count = 0;
+
+        // Select value and buttons
+        const value = document.querySelector("#value");
+        const buttons = document.querySelectorAll(".btn");
+
+        // Function to update the value's color based on count
+        const updateValueColor = () => {
+            value.style.color = count > 0 ? "goldenrod" : count < 0 ? "red" : "#222";
+        };
+
+        // Add event listeners to buttons
+        buttons.forEach(button => {
+            button.addEventListener("click", event => {
+                const { classList } = event.currentTarget;
+
+                if (classList.contains("decrease")) {
+                    count--;
+                } else if (classList.contains("increase")) {
+                    count++;
+                } else {
+                    count = 0;
+                }
+
+                // Update the displayed count and its color
+                updateValueColor();
+                value.textContent = count;
+            });
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer>
+        <h2>Thomas Paredes</h2>
+        <h3>Excellence in digital creation</h3>
+        <ul class="footer-links">
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+            <li><a href="../../../contact/index.html">Contact</a></li>
+        </ul>
+        <ul class="footer-icons">
+            <li><a href="https://www.linkedin.com/in/thomas-paredes08" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://github.com/Thommy21" target="_blank"><i class="fab fa-github-square"></i></a></li>
+        </ul>
+        <p><a href="../../../privacy.html" style="color: #fff; background-color:transparent;">Privacy &amp; Legal</a></p>
+    </footer>
+
+    <script src="../assets/js/menu.js"></script>
+</body>
+</html>
