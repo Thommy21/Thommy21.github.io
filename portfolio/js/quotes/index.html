@@ -116,7 +116,7 @@
         try {
             const randomPage = Math.floor(Math.random() * 50) + 1; // Assumes there are at least 50 pages
 
-            const response = await fetch(`http://api.quotable.io/quotes?page=${randomPage}&limit=9`);
+            const response = await fetch(`https://api.quotable.io/quotes?page=${randomPage}&limit=9`);
             const data = await response.json();
             const selectedQuotes = data.results;
 
