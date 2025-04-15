@@ -7,100 +7,84 @@
     <title>Thomas Paredes | Front-end Developer | JavaScript Image Slider Project</title>
     <meta name="description" content="A sample collection of my recent JavaScript projects.">
 
-	<!-- Stylesheets -->
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="../assets/css/lunadoge.min.css" />
     <link rel="stylesheet" href="../assets/css/css-javascript.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+
     <style>
+        /* Custom CSS for the page */
+        header.hero-block-js { background-color: #0D1015 }
+        header.hero-block-js h1 { color: #B08D57 }
+        header.hero-block-js h2 { color: #E5DEDC }
 
-
-        /* ============ Header Colours =============*/
-        header.hero-block-js { background-color: #f7df1e }
-        header.hero-block-js h1 { color: #222 }
-        header.hero-block-js h2 { color: var(--gray-700) }
-
-        /* Main Colours */
-        .theme-js {
-            background-image:#ff0000;background-image:
-            radial-gradient(at 40% 20%, hsla(28,100%,74%,1) 0, transparent 50%),
-            radial-gradient(at 80% 0%, hsla(189,100%,56%,1) 0, transparent 50%),
-            radial-gradient(at 0% 50%, hsla(355,85%,93%,1) 0, transparent 50%),
-            radial-gradient(at 80% 50%, hsla(340,100%,76%,1) 0, transparent 50%),
-            radial-gradient(at 0% 100%, hsla(22,100%,77%,1) 0, transparent 50%),
-            radial-gradient(at 80% 100%, hsla(242,100%,70%,1) 0, transparent 50%),
-            radial-gradient(at 0% 0%, hsla(343,100%,76%,1) 0, transparent 50%);
+        main {
+            background: linear-gradient(90deg, rgba(93, 0, 1, 1) 0%, rgba(184, 0, 58, 1) 50%, rgba(201, 2, 22, 1) 100%);
         }
+   .container-slider {
+    width: 100%; /* Add this line */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+}
 
-        .theme-js .col-2 { background-color: var(--green-100) }
-        .theme-js h3 { color: #222 }
-        .theme-js p { color: #222 }
+.container-outer {
+    border: 10px solid blue;
+    border-radius: 20px;
+    padding: 12px;
+    background-color: #fff;
+}
 
-        /* Button Colours: passive state */
-        .theme-js a.btn {
-            color: #fff; background-color: blue; transition: 0.2s;
-            border-radius: 6px
-        }
+.container-img {
+    width: 100%;
+    height: 400px;
+    display: block;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
 
-        /* Button Colours: active state */
-        .theme-js a.btn:hover { background-color: darkblue }
+.btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: hotpink;
+    border: none;
+    padding: 12px 18px;
+    font-size: 18px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    z-index: 2;
+}
 
-        .theme-js a.btn { background-image: linear-gradient(to right,#e052a0,#f15c41) }
-        .theme-js a.btn:hover { filter: brightness(140%) saturate(140%) }
-        .container-slider { width: 100%; padding: 0 15px; margin: 0 auto }
+.btn-left {
+    left: 10px;
+}
 
-        .container-outer {
-            max-width: 1140px;
-            text-align: center;
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .container-img {
-            align-items: center !important;
-            min-height: 596px;
-            background: url("assets/img/dublin-0.jpg");
-            background-repeat: no-repeat;
-            /* background-attachment: fixed; */
-            background-position: center;
-            background-size: contain;
-            border: 12px solid blue;
-            border-radius: 15px;
-            position: relative;
-            margin: 0 auto;
-            flex: 0 0 83.333333%;
-            max-width: 83.333333%;
-            flex: 0 0 80%;
-            max-width: 80%;
-        }
-
-        @media (max-width: 767px) {
-            .container-img { min-height: 30vh }
-        }
-
-        .btn-left, .btn-right {
-            position: absolute; top: 50%;
-            background: blue; color: #fff;
-            font-size: 1.2rem;
-            border: 0.2rem solid blue;
-        }
-
-        .btn-left { left: 0; transform: translate(-50%, -50%) }
-        .btn-right { right: 0; transform: translate(50%, -50%); }
-
+.btn-right {
+    right: 10px;
+}
+.container-outer {
+    width: 90%;
+    max-width: 1000px;
+}
     </style>
 
-	<!-- Font Awesome 6.1 icons -->
+    <!-- Font Awesome 6.1 icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
 
-
 <body>
-
-    <!-- navigation menu -->
-
+    <!-- Navigation Menu -->
     <nav class="container-menu menu-desktop menu-sticky">
-        <a href="../../../index.html"><img src="../../../assets/img/thomas_paredes_logo_200x40_transparent.png" alt="website logo"></a>
-        <ul class="">
+        <a href="../../../index.html"><img src="../../../assets/img/ttrace_logo_clean_250x60.png" alt="website logo"></a>
+        <ul>
             <li><a href="../../../index.html">Home</a></li>
             <li><a href="../../../portfolio/index.html">Portfolio</a></li>
             <li><a href="../../../contact/index.html" id="btn-cta"><span>Contact</span><i class="fas fa-arrow-right"></i></a></li>
@@ -112,7 +96,7 @@
         </div>
     </nav>
 
-    <!-- header hero block -->
+    <!-- Header Hero Block -->
     <header class="hero-block hero-block-js">
         <div class="hero-text-container">
             <h1>Image Slideshow <span>JavaScript Project</span></h1>
@@ -120,98 +104,82 @@
         </div>
     </header>
 
-    <!-- main content with sections -->
+    <!-- Main Content -->
     <main>
-
         <section class="container-flex theme-js">
-
             <div class="container-slider">
                 <div class="container-outer">
                     <div class="container-img">
-
-                    <a class="btn btn-left"><i class="fas fa-caret-left"></i></a>
-                    <a class="btn btn-right"><i class="fas fa-caret-right"></i></a>
-
+                        <button class="btn btn-left"><i class="fas fa-caret-left"></i></button>
+                        <button class="btn btn-right"><i class="fas fa-caret-right"></i></button>
                     </div>
                 </div>
             </div>
-
         </section>
-
     </main>
 
     <script>
-(function() {
-   const pictures = [
-      "dublin-0",
-      "dublin-1",
-      "dublin-2",
-      "dublin-3",
-      "dublin-4",
-      "dublin-5"
-];
-
-// Select both left and right button. Add event listeners
-const buttons = document.querySelectorAll('.btn')
-const imageDIV = document.querySelector('.container-img')
-let counter = 0
-
-buttons.forEach(function(button){
-   button.addEventListener('click', function(e) {
-
-      if (button.classList.contains('btn-left')) {
-         counter--;
-         if (counter < 0) {
-            counter = pictures.length - 1;
-         }
-         imageDIV.style.backgroundImage = `url('assets/img/${pictures[counter]}.jpg')`
-         console.log(imageDIV.style.backgroundImage = `url('assets/img/${pictures[counter]}.jpg')`)
-      }
-
-      if (button.classList.contains('btn-right')) {
-         counter++;
-         if (counter > pictures.length - 1) {
-         counter = 0;
-      }
-      imageDIV.style.backgroundImage = `url('assets/img/${pictures[counter]}.jpg')`
-      console.log(imageDIV.style.backgroundImage = `url('assets/img/${pictures[counter]}.jpg')`)
-      }
-    }) // Ends loop for left and right arrows
-   })
-})();
+        // Immediately Invoked Function Expression (IIFE) to avoid polluting the global scope
+        (() => {
+            // Array containing the base names of slideshow images (without file extension)
+            const pictures = [
+                "dublin-0",
+                "dublin-1",
+                "dublin-2",
+                "dublin-3",
+                "dublin-4",
+                "dublin-5"
+            ];
+    
+            // Select all navigation buttons and the image container element
+            const buttons = document.querySelectorAll('.btn');
+            const imageDIV = document.querySelector('.container-img');
+    
+            // Start at the first image
+            let counter = 0;
+    
+            // Display the first image as soon as the page loads
+            imageDIV.style.backgroundImage = `url('assets/img/${pictures[counter]}.jpg')`;
+    
+            // Loop through all navigation buttons and attach click event listeners
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // If the left button is clicked, move backward in the array
+                    if (button.classList.contains('btn-left')) {
+                        counter = (counter - 1 + pictures.length) % pictures.length;
+                    }
+    
+                    // If the right button is clicked, move forward in the array
+                    if (button.classList.contains('btn-right')) {
+                        counter = (counter + 1) % pictures.length;
+                    }
+    
+                    // Update the background image of the container with the new image
+                    imageDIV.style.backgroundImage = `url('assets/img/${pictures[counter]}.jpg')`;
+    
+                    // Log the current image path to the console for debugging
+                    console.log(`Current image: assets/img/${pictures[counter]}.jpg`);
+                });
+            });
+        })();
     </script>
 
-
-    <!-- footer -->
-	<footer>
-
-		<h2>Thomas Paredes</h2>
-
-		<h3>Excellence in digital creation</h3>
-
-		<ul class="footer-links">
-			<li><a href="../../../index.html">Home</a></li>
-			<li><a href="../../../portfolio/index.html">Portfolio</a></li>
-			<li><a href="../../../contact/index.html">Contact</a></li>
-		</ul>
-
-		<ul class="footer-icons">
-			<li><a href="www.linkedin.com/in/thomas-paredes08" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-			<li><a href="https://github.com/Thommy21" target="_blank"><i class="fab fa-github-square"></i></a></li>
-		</ul>
-
-		<p class="index.html"> <a href="../../../privacy.html" style="color: #fff; background-color:transparent;">Privacy &amp; Legal</a> </p>
-
+    <!-- Footer -->
+    <footer>
+        <h2>Thomas Paredes</h2>
+        <h3>Excellence in digital creation</h3>
+        <ul class="footer-links">
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+            <li><a href="../../../contact/index.html">Contact</a></li>
+        </ul>
+        <ul class="footer-icons">
+            <li><a href="www.linkedin.com/in/thomas-paredes08" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://github.com/Thommy21" target="_blank"><i class="fab fa-github-square"></i></a></li>
+        </ul>
+        <p><a href="../../../privacy.html" style="color: #fff; background-color:transparent;">Privacy &amp; Legal</a></p>
     </footer>
 
     <script src="../assets/js/menu.js"></script>
-
-
 </body>
 </html>
-
-
-
-
-
-

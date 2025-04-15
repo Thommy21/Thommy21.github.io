@@ -1,81 +1,83 @@
-// Check initial viepwort width
-document.addEventListener("DOMContentLoaded", checkViewportWidth);
+// Check initial viewport width on DOMContentLoaded
+document.addEventListener("DOMContentLoaded", () => {
+    checkViewportWidth();
+    checkMenuScrollPosition();
+});
 
-function checkViewportWidth() {
-    if (document.querySelector('.container-menu')) {
-        const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-        const elemMenuList = document.querySelector('.container-menu');
+// Function to check and update menu styles based on viewport width
+function checkViewportWidth () {
+    const menuContainer = document.querySelector('.container-menu');
+    if (menuContainer) {
+        const viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 
-        if (vw >= 768) {
-            elemMenuList.classList.add("menu-desktop");
-            elemMenuList.classList.remove("menu-mobile");
-        }
-        else {
-            elemMenuList.classList.add("menu-mobile");
-            elemMenuList.classList.remove("menu-desktop");
+        if (viewportWidth >= 768) {
+            menuContainer.classList.add("menu-desktop");
+            menuContainer.classList.remove("menu-mobile");
+        } else {
+            menuContainer.classList.add("menu-mobile");
+            menuContainer.classList.remove("menu-desktop");
         }
     }
-}
+};
 
-// Monitor viepwort width
-window.onresize = checkViewportWidth;
+// Monitor viewport width changes
+window.addEventListener('resize', checkViewportWidth);
 
 // Show/hide fly-out mobile menu
-if (document.querySelector('.container-menu')) {
-    document.querySelector('.item-icon').addEventListener('click', toggleMobileMenu)
+const menuIcon = document.querySelector('.item-icon');
+if (menuIcon) {
+    menuIcon.addEventListener('click', toggleMobileMenu);
 }
 
-function toggleMobileMenu() {
-    //toggle hamburger icon
-    const elemIcon = document.querySelector('.item-icon');
-    const elemMenu = document.querySelector('.container-menu');
-    const elemMenuList = document.querySelector('.container-menu ul');
-    elemIcon.classList.toggle("change");
-    const elemHTML = document.querySelector('html');
+// Function to toggle the mobile menu
+function toggleMobileMenu () {
+    const menuIcon = document.querySelector('.item-icon');
+    const menuContainer = document.querySelector('.container-menu');
+    const menuList = document.querySelector('.container-menu ul');
+    const htmlElement = document.querySelector('html');
 
-    // If fly-out menu is currently hidden, display it.
-    if (elemIcon.classList.contains('change')) {
-        elemMenuList.classList.add('mobile-display');
-        elemMenu.classList.add('menu-on-scroll');
-        elemHTML.classList.add('no-scroll');
-    }    
-    //if fly-out menu is currently open, close it.
-    else {
-        elemMenuList.classList.remove('mobile-display');
-        elemHTML.classList.remove('no-scroll');
-        elemMenu.classList.remove('menu-on-scroll');
-    }
-}
+    if (menuIcon && menuContainer && menuList) {
+        menuIcon.classList.toggle("change");
 
-// On-scroll colours
-if (document.querySelector('.container-menu')) {
-    window.onscroll = function() {swapMenuStyle()};
-    const el_menu = document.querySelector('.container-menu');
-    const el_menu_onscroll = el_menu.offsetTop +300;
-}
-
-function swapMenuStyle() {
-    if (document.querySelector('.container-menu')) {
-        const el_menu = document.querySelector('.container-menu');
-        const el_menu_onscroll = el_menu.offsetTop +300;
-        if ( window.pageYOffset > el_menu_onscroll) {
-            el_menu.classList.add("menu-on-scroll");
+        // If fly-out menu is currently hidden, display it
+        if (menuIcon.classList.contains('change')) {
+            menuList.classList.add('mobile-display');
+            menuContainer.classList.add('menu-on-scroll');
+            htmlElement.classList.add('no-scroll');
         } 
+        // If fly-out menu is currently open, close it
         else {
-            el_menu.classList.remove("menu-on-scroll")
+            menuList.classList.remove('mobile-display');
+            menuContainer.classList.remove('menu-on-scroll');
+            htmlElement.classList.remove('no-scroll');
         }
     }
+};
+
+// Add scroll event listener to update menu styles on scroll
+const menuContainer = document.querySelector('.container-menu');
+if (menuContainer) {
+    window.addEventListener('scroll', swapMenuStyle);
 }
 
-// Check initial menu scroll position
-document.addEventListener("DOMContentLoaded", checkMenuScrollPosition);
+// Function to update menu styles based on scroll position
+function swapMenuStyle () {
+    const menuContainer = document.querySelector('.container-menu');
+    if (menuContainer) {
+        const scrollThreshold = menuContainer.offsetTop + 300;
 
-function checkMenuScrollPosition() {
-    var y = window.scrollY;
-    if (y === 0) {
-        if (document.querySelector('.container-menu')) {
-            const el_menu = document.querySelector('.container-menu');
-            el_menu.classList.remove("menu-on-scroll")
+        if (window.pageYOffset > scrollThreshold) {
+            menuContainer.classList.add("menu-on-scroll");
+        } else {
+            menuContainer.classList.remove("menu-on-scroll");
         }
     }
-}
+};
+
+// Check initial menu scroll position on DOMContentLoaded
+function checkMenuScrollPosition (){
+    const menuContainer = document.querySelector('.container-menu');
+    if (menuContainer && window.scrollY === 0) {
+        menuContainer.classList.remove("menu-on-scroll");
+    }
+};

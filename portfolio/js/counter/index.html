@@ -7,54 +7,47 @@
     <title>Thomas Paredes | Front-end Developer | JavaScript Counter Project</title>
     <meta name="description" content="An increment and decrement counter that changes the colour of the number displayed on the web page.">
 
-	<!-- Stylesheets -->
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="../assets/css/lunadoge.min.css" />
     <link rel="stylesheet" href="../assets/css/css-javascript.css" />
 
-    <style>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
 
+    <style>
         /* ============ Header Colours =============*/
-        header.hero-block-js { background-color: #f7df1e }
-        header.hero-block-js h1 { color: #222 }
-        header.hero-block-js h2 { color: var(--gray-700) }
+        header.hero-block-js { background-color: #0D1015 }
+        header.hero-block-js h1 { color: #B08D57 }
+        header.hero-block-js h2 { color: #E5DEDC }
 
         /* Main Colours */
-        .theme-js {
-            background-image:#ff0000; background-image:
-            radial-gradient(at 40% 20%, hsla(28,100%,74%,1) 0, transparent 50%),
-            radial-gradient(at 80% 0%, hsla(189,100%,56%,1) 0, transparent 50%),
-            radial-gradient(at 0% 50%, hsla(355,85%,93%,1) 0, transparent 50%),
-            radial-gradient(at 80% 50%, hsla(340,100%,76%,1) 0, transparent 50%),
-            radial-gradient(at 0% 100%, hsla(22,100%,77%,1) 0, transparent 50%),
-            radial-gradient(at 80% 100%, hsla(242,100%,70%,1) 0, transparent 50%),
-            radial-gradient(at 0% 0%, hsla(343,100%,76%,1) 0, transparent 50%);
+        main {
+            background: linear-gradient(90deg, rgba(93, 0, 1, 1) 0%, rgba(184, 0, 58, 1) 50%, rgba(201, 2, 22, 1) 100%);
         }
 
-        .theme-js .col-2 { background-color: var(--green-100) }
-        .theme-js h3 { color: #222 }
-        .theme-js p { color: #222 }
+        .theme-js .col-2 { background-color: #B08D57; }
+        .theme-js h3, .theme-js p { color: #222 }
 
-        /* Button Colours: passive state */
+        /* Button Styles */
         .theme-js a.btn {
-            color: #fff; background-color: blue; transition: 0.2s;
-            border-radius: 6px
+            color: #fff;
+            background-image: linear-gradient(to right, #e052a0, #f15c41);
+            border-radius: 6px;
+            transition: 0.2s;
         }
 
-        /* Button Colours: active state */
-        .theme-js a.btn:hover { background-color: darkblue }
-
-        .theme-js a.btn { background-image: linear-gradient(to right,#e052a0,#f15c41) }
-        .theme-js a.btn:hover { filter: brightness(140%) saturate(140%) }
-
-        /* ========= ENDS CUSTOM CSS FOR WEB PAGE ======= */
+        .theme-js a.btn:hover {
+            filter: brightness(140%) saturate(140%);
+        }
 
         .theme-js .btn-container { display: block; width: 100% }
-
-        .theme-js { display: flex; align-items: center; flex-direction:column; text-align: center }
-
-        .theme-js h2 { font-size: 28px; text-align: center; margin: 0 auto }
+        .theme-js { display: flex; align-items: center; flex-direction: column; text-align: center }
+        .theme-js h2 { font-size: 28px; margin: 0 auto }
         .theme-js #value {
-            font-size: 84px; font-weight: 600;
+            font-size: 84px;
+            font-weight: 600;
             margin: 0 auto;
             display: block;
         }
@@ -75,22 +68,17 @@
         .theme-js .btn:hover {
             background-color: #fff;
         }
-
     </style>
 
-	<!-- Font Awesome 6.1 icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
 
-
 <body>
-
-    <!-- navigation menu -->
-
+    <!-- Navigation Menu -->
     <nav class="container-menu menu-desktop menu-sticky">
-        <a href="../../../index.html"><img src="../../../assets/img/thomas_paredes_logo_200x40_transparent.png" alt="website logo"></a>
-        <ul class="">
+        <a href="../../../index.html"><img src="../../../assets/img/ttrace_logo_clean_250x60.png" alt="website logo"></a>
+        <ul>
             <li><a href="../../../index.html">Home</a></li>
             <li><a href="../../../portfolio/index.html">Portfolio</a></li>
             <li><a href="../../../contact/index.html" id="btn-cta"><span>Contact</span><i class="fas fa-arrow-right"></i></a></li>
@@ -102,7 +90,7 @@
         </div>
     </nav>
 
-    <!-- header hero block -->
+    <!-- Header Hero Block -->
     <header class="hero-block hero-block-js">
         <div class="hero-text-container">
             <h1>Counter <span>JavaScript Project</span></h1>
@@ -110,22 +98,17 @@
         </div>
     </header>
 
-    <!-- main content with sections -->
+    <!-- Main Content -->
     <main>
-
         <section class="container-flex theme-js">
-
-            <h2>counter</h2>
+            <h2>Counter</h2>
             <span id="value">0</span>
-
             <div class="button-container">
-                <button class="btn decrease">decrease</button>
-                <button class="btn reset">reset</button>
-                <button class="btn increase">increase</button>
+                <button class="btn decrease">Decrease</button>
+                <button class="btn reset">Reset</button>
+                <button class="btn increase">Increase</button>
             </div>
-
         </section>
-
     </main>
 
     <script>
@@ -134,69 +117,49 @@
 
         // Select value and buttons
         const value = document.querySelector("#value");
-        const btns = document.querySelectorAll(".btn");
+        const buttons = document.querySelectorAll(".btn");
 
-        // Update the value's color based on count
-        function updateValueColor() {
-            if (count > 0) {
-            value.style.color = "green";
-            } else if (count < 0) {
-            value.style.color = "red";
-            } else {
-            value.style.color = "#222";
-            }
-        }
+        // Function to update the value's color based on count
+        const updateValueColor = () => {
+            value.style.color = count > 0 ? "goldenrod" : count < 0 ? "red" : "#222";
+        };
 
         // Add event listeners to buttons
-        btns.forEach(btn => {
-            btn.addEventListener("click", e => {
-            const styles = e.currentTarget.classList;
+        buttons.forEach(button => {
+            button.addEventListener("click", event => {
+                const { classList } = event.currentTarget;
 
-            if (styles.contains("decrease")) {
-                count--;
-            } else if (styles.contains("increase")) {
-                count++;
-            } else {
-                count = 0;
-            }
+                if (classList.contains("decrease")) {
+                    count--;
+                } else if (classList.contains("increase")) {
+                    count++;
+                } else {
+                    count = 0;
+                }
 
-            updateValueColor();
-            value.textContent = count;
+                // Update the displayed count and its color
+                updateValueColor();
+                value.textContent = count;
             });
         });
     </script>
 
-
-    <!-- footer -->
-	<footer>
-
-		<h2>Thomas Paredes</h2>
-
-		<h3>Excellence in digital creation</h3>
-
-		<ul class="footer-links">
-			<li><a href="../../../index.html">Home</a></li>
-			<li><a href="../../../portfolio/index.html">Portfolio</a></li>
-			<li><a href="../../../contact/index.html">Contact</a></li>
-		</ul>
-
-		<ul class="footer-icons">
-			<li><a href="www.linkedin.com/in/thomas-paredes08" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-			<li><a href="https://github.com/Thommy21" target="_blank"><i class="fab fa-github-square"></i></a></li>
-		</ul>
-
-		<p class="index.html"> <a href="../../../privacy.html" style="color: #fff; background-color:transparent;">Privacy &amp; Legal</a> </p>
-
+    <!-- Footer -->
+    <footer>
+        <h2>Thomas Paredes</h2>
+        <h3>Excellence in digital creation</h3>
+        <ul class="footer-links">
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+            <li><a href="../../../contact/index.html">Contact</a></li>
+        </ul>
+        <ul class="footer-icons">
+            <li><a href="https://www.linkedin.com/in/thomas-paredes08" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://github.com/Thommy21" target="_blank"><i class="fab fa-github-square"></i></a></li>
+        </ul>
+        <p><a href="../../../privacy.html" style="color: #fff; background-color:transparent;">Privacy &amp; Legal</a></p>
     </footer>
 
     <script src="../assets/js/menu.js"></script>
-
-
 </body>
 </html>
-
-
-
-
-
-

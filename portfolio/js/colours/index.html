@@ -7,82 +7,103 @@
     <title>Thomas Paredes | Front-end Developer | JavaScript Random Colour Generator Project</title>
     <meta name="description" content="Uses an array of hexadecimal values to randomly generate a background colour for the web page.">
 
-	<!-- Stylesheets -->
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="../assets/css/lunadoge.min.css" />
     <link rel="stylesheet" href="../assets/css/css-javascript.css" />
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+
     <style>
-
-        /* ============ Header Colours =============*/
-        header.hero-block-js { background-color: #f7df1e }
-        header.hero-block-js h1 { color: #222 }
-        header.hero-block-js h2 { color: var(--gray-700) }
-
-        main { min-height: 50vh}
-        .theme-js .col-2 { background-color: var(--green-100) }
-        .theme-js h3 { color: #222 }
-        .theme-js p { color: #222 }
-
-        /* Button Colours: passive state */
-        .theme-js a.btn {
-            color: #fff; background-color: blue; transition: 0.2s;
-            border-radius: 6px
+        /* ============ Header Colours ============= */
+        header.hero-block-js {
+            background-color: #080D10;
         }
-
-        /* Button Colours: active state */
-        .theme-js a.btn:hover { background-color: darkblue }
-
-        .theme-js a.btn { background-image: linear-gradient(to right,#e052a0,#f15c41) }
-        .theme-js a.btn:hover { filter: brightness(140%) saturate(140%) }
-
-        /* ===== END PAGE CUSTOM COLOURS ==========*/
-
-        /* ===== THIS PROJECT ONLY ==========*/
-
-        .theme-js { background-color:#dbf4e4; text-align: center }
-
-        .theme-js h2 {
-            text-align: center; margin: 0 auto;
-            font-size: 26px;
-            color: #fff; background-color: #000;
-            display: inline-block;
-            padding: 20px; line-height: 2;
+        header.hero-block-js h1 {
+            color: #B08D57;
         }
-
-        #color-display { background-color: green; font-weight: 400; padding: 6px 10px  }
-
-        .theme-js p { width: 100% }
-        #btn-color {
-            display: block;
+        header.hero-block-js h2 {
+            color: #E5DEDC;
+        }
+        
+        /* ============ Main Colours ============= */
+        main {
+            background: linear-gradient(90deg, rgba(93, 0, 1, 1) 0%, rgba(184, 0, 58, 1) 50%, rgba(201, 2, 22, 1) 100%);
+        }
+        
+        /* ============ Main Section ============= */
+        .theme-js {
+            background-color: #e6f6ec;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
             text-align: center;
-            margin: 20px auto 0 auto;
-            padding: 20px 28px;
-            border: 1px none #000;
-            background-color: blue;
-            transition: all 350ms ease;
-            color: #fff;
-            font-size: 18px;
-            line-height: 1;
-            border-radius: 50px;
         }
-        #btn-color:hover {background-color: darkblue }
-        #btn-color i { margin-right: 10px }
+        
+        /* ============ Color Display Block ============= */
+        .color-box {
+            background-color: black;
+            color: white;
+            padding: 20px 30px;
+            border-radius: 8px;
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        #color-display {
+            background-color: #B08D57;
+            color: black;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 1.2rem;
+        }
+        
+        /* ============ Button ============= */
+        .btn {
+            background-color: #B08D57;
+            color: black;
+            border: none;
+            border-radius: 999px;
+            padding: 16px 32px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .btn i {
+            font-size: 1.3rem;
+        }
+        </style>
+        
 
-    </style>
-
-	<!-- Font Awesome 6.1 icons -->
+    <!-- Font Awesome 6.1 icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
 
-
 <body>
-
-    <!-- navigation menu -->
-
+    <!-- Navigation Menu -->
     <nav class="container-menu menu-desktop menu-sticky">
-        <a href="../../../index.html"><img src="../../../assets/img/thomas_paredes_logo_200x40_transparent.png" alt="website logo"></a>
-        <ul class="">
+        <a href="../../../index.html"><img src="../../../assets/img/ttrace_logo_clean_250x60.png" alt="website logo"></a>
+        <ul>
             <li><a href="../../../index.html">Home</a></li>
             <li><a href="../../../portfolio/index.html">Portfolio</a></li>
             <li><a href="../../../contact/index.html" id="btn-cta"><span>Contact</span><i class="fas fa-arrow-right"></i></a></li>
@@ -94,7 +115,7 @@
         </div>
     </nav>
 
-    <!-- header hero block -->
+    <!-- Header Hero Block -->
     <header class="hero-block hero-block-js">
         <div class="hero-text-container">
             <h1>Random Colour Generator <span>JavaScript Project</span></h1>
@@ -102,72 +123,59 @@
         </div>
     </header>
 
-    <!-- main content with sections -->
+    <!-- Main Content -->
     <main>
-
         <section class="container-flex theme-js">
-
-            <h2>Background Colour: &nbsp;<span id="color-display">#dbf4e4</span></h2>
-            <p>&nbsp;</p>
+            <div class="color-box">
+                Background Colour: <span id="color-display">#dbf4e4</span>
+            </div>
             <button class="btn" id="btn-color">
                 <i class="fa-solid fa-paint-roller"></i> Click me
             </button>
-
         </section>
-
     </main>
 
     <script>
-const arrHex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
-const btnColor = document.getElementById("btn-color");
-const strColorDisplay = document.getElementById("color-display");
+        // Array of hexadecimal values
+        const arrHex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
 
-btnColor.addEventListener("click", function () {
-   let strHexColor = "#";
-   for (let i = 0; i < 6; i++) {
-      strHexColor = strHexColor + arrHex[getRandomNumber()];
-   }
-   strColorDisplay.textContent = strHexColor;
-   document.querySelector(".theme-js").style.backgroundColor = strHexColor;
-});
+        // Select DOM elements
+        const btnColor = document.getElementById("btn-color");
+        const strColorDisplay = document.getElementById("color-display");
+        const themeSection = document.querySelector(".theme-js");
 
-// Generate random number in range 0 - 15
-   function getRandomNumber() {
-   return Math.floor(Math.random() * arrHex.length);
-}
+        // Event listener for button click
+        btnColor.addEventListener("click", () => {
+            const strHexColor = generateRandomHexColor();
+            strColorDisplay.textContent = strHexColor;
+            themeSection.style.backgroundColor = strHexColor;
+        });
+
+        // Function to generate a random hexadecimal color
+        const generateRandomHexColor = () => {
+            return `#${Array.from({ length: 6 }, () => arrHex[getRandomNumber()]).join('')}`;
+        };
+
+        // Function to generate a random number in the range 0-15
+        const getRandomNumber = () => Math.floor(Math.random() * arrHex.length);
     </script>
 
-
-    <!-- footer -->
-	<footer>
-
-		<h2>Thomas Paredes</h2>
-
-		<h3>Excellence in digital creation</h3>
-
-		<ul class="footer-links">
-			<li><a href="../../../index.html">Home</a></li>
-			<li><a href="../../../portfolio/index.html">Portfolio</a></li>
-			<li><a href="../../../contact/index.html">Contact</a></li>
-		</ul>
-
-		<ul class="footer-icons">
-			<li><a href="www.linkedin.com/in/thomas-paredes08" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-			<li><a href="https://github.com/Thommy21" target="_blank"><i class="fab fa-github-square"></i></a></li>
-		</ul>
-
-		<p class="index.html"> <a href="../../../privacy.html" style="color: #fff; background-color:transparent;">Privacy &amp; Legal</a> </p>
-
+    <!-- Footer -->
+    <footer>
+        <h2>Thomas Paredes</h2>
+        <h3>Excellence in digital creation</h3>
+        <ul class="footer-links">
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+            <li><a href="../../../contact/index.html">Contact</a></li>
+        </ul>
+        <ul class="footer-icons">
+            <li><a href="www.linkedin.com/in/thomas-paredes08" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://github.com/Thommy21" target="_blank"><i class="fab fa-github-square"></i></a></li>
+        </ul>
+        <p class="index.html"><a href="../../../privacy.html" style="color: #fff; background-color:transparent;">Privacy &amp; Legal</a></p>
     </footer>
 
     <script src="../assets/js/menu.js"></script>
-
-
 </body>
 </html>
-
-
-
-
-
-

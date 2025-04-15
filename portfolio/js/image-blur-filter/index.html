@@ -7,40 +7,35 @@
     <title>Thomas Paredes | Front-end Developer | JavaScript Image Blur Filter Project</title>
     <meta name="description" content="Uses CSS variables and HTML custom data attributes to adjust the filter blur property of an image.">
 
-	<!-- Stylesheets -->
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="../assets/css/lunadoge.min.css" />
     <link rel="stylesheet" href="../assets/css/css-javascript.css" />
 
-    <style>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
 
-        /* ============ Header Colours =============*/
-        header.hero-block-js { background-color: #f7df1e }
-        header.hero-block-js h1 { color: #222 }
-        header.hero-block-js h2 { color: var(--gray-700) }
+    <style>
+        /* ============ Header Colours ============= */
+        header.hero-block-js { background-color: #0D1015 }
+        header.hero-block-js h1 { color: #B08D57 }
+        header.hero-block-js h2 { color: #E5DEDC }
 
         /* Main Colours */
-
         main {
-            background-image:#ff0000; background-image:
-            radial-gradient(at 40% 20%, hsla(28,100%,74%,1) 0, transparent 50%),
-            radial-gradient(at 80% 0%, hsla(189,100%,56%,1) 0, transparent 50%),
-            radial-gradient(at 0% 50%, hsla(355,85%,93%,1) 0, transparent 50%),
-            radial-gradient(at 80% 50%, hsla(340,100%,76%,1) 0, transparent 50%),
-            radial-gradient(at 0% 100%, hsla(22,100%,77%,1) 0, transparent 50%),
-            radial-gradient(at 80% 100%, hsla(242,100%,70%,1) 0, transparent 50%),
-            radial-gradient(at 0% 0%, hsla(343,100%,76%,1) 0, transparent 50%);
+            background: linear-gradient(90deg, rgba(93, 0, 1, 1) 0%, rgba(184, 0, 58, 1) 50%, rgba(201, 2, 22, 1) 100%);
         }
         .theme-js .col-2 { background-color: var(--green-100) }
-        .theme-js h3 { color: #222 }
-        .theme-js p { color: #222 }
+        .theme-js h3, .theme-js p { color: #222 }
 
         /* Button Colours: passive state */
         .theme-js a.btn {
-            color: #fff; background-color: blue; transition: 0.2s;
-            border-radius: 6px
+            color: #fff;
+            background-image: linear-gradient(to right, #e052a0, #f15c41);
+            border-radius: 6px;
+            transition: 0.2s;
         }
-
-        .theme-js a.btn { background-image: linear-gradient(to right,#e052a0,#f15c41) }
         .theme-js a.btn:hover { filter: brightness(140%) saturate(140%) }
 
         :root {
@@ -58,8 +53,9 @@
 
         input { width: 100px; }
 
-        label { color: var(--base-color);
-            font-size:  calc(20px + (40 - 20) * (100vw - 320px) / (1920 - 320))
+        label {
+            color: var(--base-color);
+            font-size: calc(20px + (40 - 20) * (100vw - 320px) / (1920 - 320));
         }
 
         .theme-js img {
@@ -67,22 +63,17 @@
             background: var(--base-color);
             filter: blur(var(--blur));
         }
-
     </style>
 
-	<!-- Font Awesome 6.1 icons -->
+    <!-- Font Awesome 6.1 icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
 
-
 <body>
-
-    <!-- navigation menu -->
-
+    <!-- Navigation Menu -->
     <nav class="container-menu menu-desktop menu-sticky">
-        <a href="../../../index.html"><img src="../../../assets/img/thomas_paredes_logo_200x40_transparent.png" alt="website logo"></a>
-        <ul class="">
+        <a href="../../../index.html"><img src="../../../assets/img/ttrace_logo_clean_250x60.png" alt="website logo"></a>
+        <ul>
             <li><a href="../../../index.html">Home</a></li>
             <li><a href="../../../portfolio/index.html">Portfolio</a></li>
             <li><a href="../../../contact/index.html" id="btn-cta"><span>Contact</span><i class="fas fa-arrow-right"></i></a></li>
@@ -94,7 +85,7 @@
         </div>
     </nav>
 
-    <!-- header hero block -->
+    <!-- Header Hero Block -->
     <header class="hero-block hero-block-js">
         <div class="hero-text-container">
             <h1>Image Blur Filter <span>JavaScript Project</span></h1>
@@ -102,11 +93,9 @@
         </div>
     </header>
 
-    <!-- main content with sections -->
+    <!-- Main Content -->
     <main>
-
         <section class="container-flex theme-js" id="conta">
-
             <div class="controls">
                 <label for="spacing">Spacing:</label>
                 <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
@@ -116,61 +105,45 @@
 
                 <label for="base-color">Base Color</label>
                 <input id="base-color" type="color" name="base-color" value="#ffc600">
-              </div>
+            </div>
 
-              <img src="assets/img/photo-1465188162913-8fb5709d6d57.jpg" alt="A beautiful landscape">
-
+            <img src="assets/img/photo-1465188162913-8fb5709d6d57.jpg" alt="A beautiful landscape">
         </section>
-
     </main>
 
     <script>
-// Get controls
-const inputs = document.querySelectorAll('.controls input');
+        // Select all input elements inside the controls container
+        const inputs = document.querySelectorAll('.controls input');
 
-// Attach event listeners
-inputs.forEach(input => input.addEventListener('change', handleUpdate));
-inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+        // Function to handle updates to CSS variables
+        const handleUpdate = (event) => {
+            const suffix = event.target.dataset.sizing || ''; // Get the suffix (e.g., 'px') from data-sizing
+            document.documentElement.style.setProperty(`--${event.target.name}`, event.target.value + suffix); // Update CSS variable
+        };
 
-function handleUpdate() {
-        // dataset retrieves the suffix from the data object
-        const suffix = this.dataset.sizing || '';
-        // Set a style property (css variable from the page);
-        document.querySelector(".theme-js").style.setProperty(`--${this.name}`, this.value + suffix);
-}
+        // Attach event listeners for 'change' and 'input' events
+        inputs.forEach(input => {
+            input.addEventListener('input', handleUpdate);
+            input.addEventListener('change', handleUpdate);
+        });
     </script>
 
-
-    <!-- footer -->
-	<footer>
-
-		<h2>Thomas Paredes</h2>
-
-		<h3>Excellence in digital creation</h3>
-
-		<ul class="footer-links">
-			<li><a href="../../../index.html">Home</a></li>
-			<li><a href="../../../portfolio/index.html">Portfolio</a></li>
-			<li><a href="../../../contact/index.html">Contact</a></li>
-		</ul>
-
-		<ul class="footer-icons">
-			<li><a href="www.linkedin.com/in/thomas-paredes08" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-			<li><a href="https://github.com/Thommy21" target="_blank"><i class="fab fa-github-square"></i></a></li>
-		</ul>
-
-		<p class="index.html"> <a href="../../../privacy.html" style="color: #fff; background-color:transparent;">Privacy &amp; Legal</a> </p>
-
+    <!-- Footer -->
+    <footer>
+        <h2>Thomas Paredes</h2>
+        <h3>Excellence in digital creation</h3>
+        <ul class="footer-links">
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+            <li><a href="../../../contact/index.html">Contact</a></li>
+        </ul>
+        <ul class="footer-icons">
+            <li><a href="https://www.linkedin.com/in/thomas-paredes08" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://github.com/Thommy21" target="_blank"><i class="fab fa-github-square"></i></a></li>
+        </ul>
+        <p><a href="../../../privacy.html" style="color: #fff; background-color:transparent;">Privacy &amp; Legal</a></p>
     </footer>
 
     <script src="../assets/js/menu.js"></script>
-
-
 </body>
 </html>
-
-
-
-
-
-

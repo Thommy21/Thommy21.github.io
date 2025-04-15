@@ -7,22 +7,24 @@
     <title>Thomas Paredes | Front-end Developer | JavaScript Dublin Weather Project</title>
     <meta name="description" content="Uses the Fetch API to retrieve current weather information for the city of Dublin, Ireland. By Thomas Paredes.">
 
-	<!-- Stylesheets -->
-    <link rel="stylesheet" href="../assets/css/lunadoge.min.css" />
-    <link rel="stylesheet" href="../assets/css/javascript-projects.css" />
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../assets/css/lunadoge.min.css">
+    <link rel="stylesheet" href="../assets/css/javascript-projects.css">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
 
     <style>
-
-        /* ============ Header Colours =============*/
-        header.hero-block-js { background-color: #f7df1e }
-        header.hero-block-js h1 { color: #222 }
-        header.hero-block-js h2 { color: var(--gray-700) }
+        /* ============ Header Colours ============= */
+        header.hero-block-js { background-color: #0D1015; }
+        header.hero-block-js h1 { color: #B08D57; }
+        header.hero-block-js h2 { color: #E5DEDC; }
 
         /* Main Colours */
         .theme-js {
             background-color: #fff;
-            /* background-image: linear-gradient(147deg, #000000 0%, #04619f 74%); */
             text-align: center;
             background-image: url('assets/img/dublin-day.jpg');
             background-position: center center;
@@ -31,15 +33,17 @@
         }
 
         .theme-js .box-weather {
-            margin: 0 auto; width: 400px; max-width: 80%;
-            background-image: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5));
+            margin: 0 auto;
+            width: 400px;
+            max-width: 80%;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
             padding: 32px;
         }
 
-        .theme-js h3 { color: #fff; font-size: 32px; margin-bottom: 32px }
-        .theme-js p { color: #fff; font-weight: bold }
+        .theme-js h3 { color: #fff; font-size: 32px; margin-bottom: 32px; }
+        .theme-js p { color: #fff; font-weight: bold; }
 
-        .theme-js p a { color: #fff !important; font-weight: bold }
+        .theme-js p a { color: #fff !important; font-weight: bold; }
 
         .data-table {
             border-collapse: collapse;
@@ -50,38 +54,29 @@
             background-color: transparent;
         }
 
-        .data-table td { padding: 12px 0; color:#fff; text-align: left; }
+        .data-table td { padding: 12px 0; color: #fff; text-align: left; }
+        .data-table td:first-of-type { padding-left: 0; padding-right: 18px; }
+        .data-table td:first-of-type span { background-color: blue; color: #fff; padding: 4px 12px; border-radius: 5px; }
+        .data-table td:last-of-type { padding-left: 18px; padding-right: 0; }
 
-        .data-table td:first-of-type { padding-left: 0; padding-right: 18px;  }
+        .table-lines tr { border-bottom: solid 1px #fff; }
 
-        .data-table td:first-of-type span { background-color: blue; color:#fff; padding: 4px 12px; border-radius: 5px }
-
-        .data-table td:last-of-type  { padding-left: 18px; padding-right: 0;  }
-
-        .table-lines tr { border-bottom: solid 1px #fff }
-
-        @media(max-width: 768px) {
-            .theme-js .box-weather { max-width: 95%; padding: 20px }
-            .theme-js h3 { font-size: 26px; margin-bottom: 22px; line-height: 1.3 }
-            .theme-js p { font-size: 16px }
+        @media (max-width: 768px) {
+            .theme-js .box-weather { max-width: 95%; padding: 20px; }
+            .theme-js h3 { font-size: 26px; margin-bottom: 22px; line-height: 1.3; }
+            .theme-js p { font-size: 16px; }
         }
-
-
     </style>
 
-	<!-- Font Awesome 6.1 icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <!-- Font Awesome 6.1 icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 
-
 <body>
-
-    <!-- navigation menu -->
-
+    <!-- Navigation Menu -->
     <nav class="container-menu menu-desktop menu-sticky">
-        <a href="../../../index.html"><img src="../../../assets/img/thomas_paredes_logo_200x40_transparent.png" alt="website logo"></a>
-        <ul class="">
+        <a href="../../../index.html"><img src="../../../assets/img/ttrace_logo_clean_250x60.png" alt="website logo"></a>
+        <ul>
             <li><a href="../../../index.html">Home</a></li>
             <li><a href="../../../portfolio/index.html">Portfolio</a></li>
             <li><a href="../../../contact/index.html" id="btn-cta"><span>Contact</span><i class="fas fa-arrow-right"></i></a></li>
@@ -93,7 +88,7 @@
         </div>
     </nav>
 
-    <!-- header hero block -->
+    <!-- Header Hero Block -->
     <header class="hero-block hero-block-js">
         <div class="hero-text-container">
             <h1>Dublin Weather <span>JavaScript Project</span></h1>
@@ -101,65 +96,39 @@
         </div>
     </header>
 
-    <!-- main content with sections -->
+    <!-- Main Content -->
     <main>
-
         <section class="container-flex theme-js">
-
             <div class="box-weather">
                 <h3>Weather now in Dublin city, Ireland.</h3>
-
                 <table class="data-table table-lines" id="table-weather-dublin">
                     <tbody>
-
+                        <!-- Weather data will be dynamically inserted here -->
                     </tbody>
-                  </table>
-                  <p>Data from <a href="https://openweathermap.org/" target="_blank">Open Weather</a></p>
+                </table>
+                <p>Data from <a href="https://openweathermap.org/" target="_blank" rel="noopener noreferrer">Open Weather</a></p>
             </div>
-
         </section>
-
     </main>
 
-    <script>
-
-
-    </script>
-
-
-    <!-- footer -->
-	<footer>
-
-		<h2>Thomas Paredes</h2>
-
-		<h3>Excellence in digital creation</h3>
-
-		<ul class="footer-links">
-			<li><a href="../../../index.html">Home</a></li>
-			<li><a href="../../../portfolio/index.html">Portfolio</a></li>
-			<li><a href="../../../contact/index.html">Contact</a></li>
-		</ul>
-
-		<ul class="footer-icons">
-			<li><a href="www.linkedin.com/in/thomas-paredes08" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-			<li><a href="https://github.com/Thommy21" target="_blank"><i class="fab fa-github-square"></i></a></li>
-		</ul>
-
-		<p class="index.html"> <a href="../../../privacy.html" style="color: #fff; background-color:transparent;">Privacy &amp; Legal</a> </p>
-
+    <!-- Footer -->
+    <footer>
+        <h2>Thomas Paredes</h2>
+        <h3>Excellence in digital creation</h3>
+        <ul class="footer-links">
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+            <li><a href="../../../contact/index.html">Contact</a></li>
+        </ul>
+        <ul class="footer-icons">
+            <li><a href="https://www.linkedin.com/in/thomas-paredes08" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://github.com/Thommy21" target="_blank" rel="noopener noreferrer"><i class="fab fa-github-square"></i></a></li>
+        </ul>
+        <p><a href="../../../privacy.html" style="color: #fff; background-color: transparent;">Privacy &amp; Legal</a></p>
     </footer>
 
-    <script src="../assets/js/menu.js"></script>
-
-
-    <script src="app.js"></script>
-
-
+    <!-- JavaScript -->
+    <script src="../assets/js/menu.js" type="module"></script>
+    <script src="app.js" type="module"></script>
 </body>
 </html>
-
-
-
-
-
-
