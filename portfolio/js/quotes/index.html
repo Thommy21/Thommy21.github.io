@@ -108,33 +108,40 @@
 
     <!-- JavaScript -->
     <script>
-        window.addEventListener("DOMContentLoaded", () => {
-    const button = document.getElementById("btn-quotes");
-    const quotesBox = document.getElementById("quotes-box");
-
-    button.addEventListener("click", async () => {
-        try {
-            const randomPage = Math.floor(Math.random() * 50) + 1; // Assumes there are at least 50 pages
-
-            const response = await fetch(`https://zenquotes.io/api/quotes?page=${randomPage}&limit=9`);
-            const data = await response.json();
-            const selectedQuotes = data.results;
-
-            const htmlBlock = selectedQuotes.map(quote => `
-                <div class="col-3">
-                    <p><span>“</span>${quote.content}<span>”</span></p>
-                    <h3>${quote.author || "Anonymous"}</h3>
-                </div>
-            `).join("");
-
-            quotesBox.innerHTML = htmlBlock;
-        } catch (error) {
-            console.error("Error fetching quotes:", error);
-        }
-    });
-});
-
-    </script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const button = document.getElementById("btn-quotes");
+            const quotesBox = document.getElementById("quotes-box");
+        
+            if (!button || !quotesBox) {
+                console.error("Missing button or quotes container in the DOM.");
+                return;
+            }
+        
+            button.addEventListener("click", async () => {
+                try {
+                    const fetchUrl = "https://dummyjson.com/quotes?limit=9";
+                    const response = await fetch(fetchUrl);
+        
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
+                    const data = await response.json();
+                    const selectedQuotes = data.quotes;
+        
+                    const htmlBlock = selectedQuotes.map(quote => `
+                        <div class="col-3">
+                            <p><span>“</span>${quote.quote}<span>”</span></p>
+                            <h3>${quote.author || "Anonymous"}</h3>
+                        </div>
+                    `).join("");
+        
+                    quotesBox.innerHTML = htmlBlock;
+                } catch (error) {
+                    console.error("Error fetching quotes:", error);
+                    quotesBox.innerHTML = `<p style="color: red;">Failed to load quotes. Please try again later.</p>`;
+                }
+            });
+        });
+        </script>
     
 
     <!-- Footer -->
