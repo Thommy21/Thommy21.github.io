@@ -108,25 +108,33 @@
 
     <!-- JavaScript -->
     <script>
+        // Wait for the DOM to fully load before executing the script
         document.addEventListener("DOMContentLoaded", () => {
+            // Get references to the button and the quotes container
             const button = document.getElementById("btn-quotes");
             const quotesBox = document.getElementById("quotes-box");
         
+            // Check if the button or quotes container is missing in the DOM
             if (!button || !quotesBox) {
                 console.error("Missing button or quotes container in the DOM.");
                 return;
             }
         
+            // Add a click event listener to the button
             button.addEventListener("click", async () => {
                 try {
+                    // Define the API endpoint to fetch quotes
                     const fetchUrl = "https://dummyjson.com/quotes?limit=9";
                     const response = await fetch(fetchUrl);
         
+                    // Check if the response is not OK and throw an error
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         
+                    // Parse the JSON response
                     const data = await response.json();
                     const selectedQuotes = data.quotes;
         
+                    // Generate HTML for each quote and join them into a single block
                     const htmlBlock = selectedQuotes.map(quote => `
                         <div class="col-3">
                             <p><span>“</span>${quote.quote}<span>”</span></p>
@@ -134,15 +142,16 @@
                         </div>
                     `).join("");
         
+                    // Insert the generated HTML into the quotes container
                     quotesBox.innerHTML = htmlBlock;
                 } catch (error) {
+                    // Log the error and display a fallback error message in the quotes container
                     console.error("Error fetching quotes:", error);
                     quotesBox.innerHTML = `<p style="color: red;">Failed to load quotes. Please try again later.</p>`;
                 }
             });
         });
-        </script>
-    
+    </script>
 
     <!-- Footer -->
     <footer>
